@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>ColorCombos</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #555;
+  vertical-align: middle;
+  background-color: #fcfcfc;
+  border: solid 1px #ccc;
+  border-bottom-color: #bbb;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #bbb
+}
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+  body {
+    padding: 2cm; 
+  }
+}
+</style>
+
+
+</head>
+
+<body>
+
+<p><html>
+<head>
+<meta charset="utf-8">
+<style>
+  .lightbox { display:none; position:fixed; z-index:999; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; }
+  .lightbox img { max-width:95vw; max-height:95vh; border-radius:12px; box-shadow:0 0 30px rgba(255,255,255,0.3); }
+  .close { position:absolute; top:20px; right:35px; color:#fff; font-size:50px; font-weight:bold; cursor:pointer; }
+</style>
+</head></p>
+
+<p><body></p>
+
+<h1>Color Combinations for Gray Days</h1>
+
+<h2>Matisse – Harmony in Red (1908)</h2>
+
+<p><strong>Vivid Vermilion Red + Bright Turquoise</strong></p>
+
+<p>The famous red room with strong turquoise accents in the window view and table details. Extremely bold and happy. 
+<div style="display:flex; gap:12px;">
+  <div style="width:180px; height:100px; background:#E32636; border-radius:20px;"></div>
+  <div style="width:180px; height:100px; background:#00A1B7; border-radius:20px;"></div>
+</div></p>
+
+<p><img src="https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Matisse – Luxe, Calme et Volupté (1904)</h2>
+
+<p><strong>Emerald Green + Hot Magenta Pink</strong></p>
+
+<p>Pointillist divisionism with intense green landscapes and magenta-pink flesh/nudes. Feels tropical and playful.
+<div style="display:flex; gap:12px;">
+  <div style="width:180px; height:100px; background:#00A86B; border-radius:20px;"></div>
+  <div style="width:180px; height:100px; background:#FF1493; border-radius:20px;"></div>
+</div></p>
+
+<div style="display:flex; gap:12px;">
+  <div style="width:180px; height:100px; background:#E32636; border-radius:20px;"></div>
+  <div style="width:180px; height:100px; background:#00A1B7; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Van Gogh – Irises (Vase with Irises Against a Yellow Background), 1890</h2>  
+
+<p><strong>Vivid Cobalt Blue + Radiant Cadmium Yellow</strong>  </p>
+
+<p>One of the most joyful and intense still lifes Van Gogh painted during his year in Saint-Rémy. A simple earthenware vase bursts with electric cobalt-blue irises and emerald leaves against a glowing, almost fluorescent cadmium-yellow background. The complementary clash of blue and yellow creates pure visual fireworks—serene yet explosive, quiet yet screaming with life.</p>
+
+<div style="display:flex; gap:12px;">
+  <div style="width:180px; height:100px; background:#0047AB; border-radius:20px;"></div>
+  <div style="width:180px; height:100px; background:#FFD700; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Mondrian – Composition 1930</h2>
+
+<p><strong>Cadmium Red + Cobalt Blue + Lemon Yellow</strong></p>
+
+<p>Primary colors at their most pure and punchy. Surprisingly cute because of the perfect balance.</p>
+
+<div style="display:flex; gap:6px;">
+  <div style="width:120px; height:100px; background:#D40000; border-radius:20px;"></div>
+  <div style="width:120px; height:100px; background:#0055FF; border-radius:20px;"></div>
+  <div style="width:120px; height:100px; background:#FFEE00; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Van Gogh – Irises (1889)</h2> 
+
+<p><strong>Vivid Violet + Deep Indigo + Acid Lime Green</strong> </p>
+
+<p>(The true dominant trio from the 1889 version in the Van Gogh Museum)</p>
+
+<p>A hypnotic close-up of purple irises growing straight out of the garden soil. Van Gogh skips the vase entirely and paints the flowers against a raw patch of earth and sky. The petals are pure electric violet, the shadows plunge into almost black-indigo, and the leaves and stems flash with that unmistakable Van Gogh acid-lime green that makes the whole canvas vibrate like neon.</p>
+
+<div style="display:flex; gap:6px;">
+  <div style="width:120px; height:100px; background:#8A2BE2; border-radius:20px;"></div>  <!-- vivid violet petals -->
+  <div style="width:120px; height:100px; background:#4B0082; border-radius:20px;"></div>  <!-- deep indigo shadows & soil -->
+  <div style="width:120px; height:100px; background:#00FF7F; border-radius:20px;"></div>  <!-- acid spring-green leaves -->
+</div>
+
+<p><img src="https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Van Gogh – The Pink Peach Trees (“Souvenir de Mauve”), 1888</h2>
+
+<p><strong>Hot Pink + Deep Magenta + Minty Spring Green</strong> </p>
+
+<p>Painted as a tender tribute to Anton Mauve after his death, this is Van Gogh at his most candy-sweet and joyful. Delicate peach trees explode into clouds of bubblegum-pink and hot-magenta blossoms against a fresh mint-green sky and field. It’s pure springtime euphoria—soft yet insanely vivid, like strawberry ice cream under a lime sky.</p>
+
+<div style="display:flex; gap:6px;">
+  <div style="width:120px; height:100px; background:#FF69B4; border-radius:20px;"></div> <!-- hot pink blossoms -->
+  <div style="width:120px; height:100px; background:#FF1493; border-radius:20px;"></div> <!-- deeper magenta pink -->
+  <div style="width:120px; height:100px; background:#98FB98; border-radius:20px;"></div> <!-- minty spring green -->
+</div>
+
+<p><img src="https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Matisse – Woman with a Hat (Madame Matisse), 1905</h2> 
+
+<p><strong>Turquoise + Fuchsia + Lemon Yellow + Emerald Green</strong>  </p>
+
+<p>The painting that scandalized Paris and launched Fauvism. Matisse’s wife Amélie sits in an ordinary chair wearing an elaborate hat, but everything is transformed into pure, explosive color: her face is painted with turquoise shadows and fuchsia highlights, the hat is a riot of hot pink and emerald, and wild strokes of lemon yellow streak across the background. It’s bold, fearless, and strangely joyful—like a tropical bird exploded in the middle of a Parisian salon.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>  <!-- turquoise -->
+  <div style="width:180px; height:90px; background:#FF0090; border-radius:20px;"></div>  <!-- fuchsia / hot magenta -->
+  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div>  <!-- lemon yellow -->
+  <div style="width:180px; height:90px; background:#008040; border-radius:20px;"></div>  <!-- emerald green -->
+</div>
+
+<p><img src="https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Franz Marc – Blue Horses, 1911</h2>  
+
+<p><strong>Royal Blue + Scarlet Red + Hot Pink + Lemon Yellow</strong>  </p>
+
+<p>Horses made of pure electric color—somehow both wild and adorable.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#0000FF; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#FF0000; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#FF69B4; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#FFFF00; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Van Gogh – Wheatfield with Crows, 1890</h2>
+
+<p><strong>Fluorescent Ultramarine + Golden Wheat + Black Crows</strong>  </p>
+
+<p>One of Van Gogh’s final and most dramatic paintings, painted in Auvers-sur-Oise just weeks before his death. A stormy, almost electric ultramarine sky churns with thick, violent brushstrokes, pressing down on a turbulent sea of golden-yellow wheat. Three dark paths cut through the field like lost roads, and a flock of black crows rises ominously—yet the colors remain unbelievably vivid and alive, like a scream in neon. It’s apocalyptic, intense, and strangely beautiful—like the end of the world painted in candy that’s gone slightly toxic.</p>
+
+<div style="display:flex; gap:6px; flex-wrap:wrap;">
+  <div style="width:120px; height:110px; background:#002FA7; border-radius:24px;"></div> <!-- that famous radioactive ultramarine -->
+  <div style="width:120px; height:110px; background:#FFD700; border-radius:24px;"></div> <!-- molten gold wheat -->
+  <div style="width:120px; height:110px; background:#000000; border-radius:24px;"></div> <!-- the ominous black crows -->
+</div>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Picasso – Jacqueline with Flowers, 1954 (late period love explosion)</h2>
+
+<p><strong>Hot Coral + Acid Lime + Turquoise + Magenta</strong>  </p>
+
+<p>Picasso painting his wife Jacqueline as a walking tropical punch bowl – pure 1950s Riviera joy.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#FF4040; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#BFFF00; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#FF1493; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Gauguin – Arearea (Joyousness), 1892</h2>
+
+<p><strong>Coral Red + Turquoise + Mango Orange + Acid Lime Green</strong> </p>
+
+<p>Pure Tahitian happiness distilled into four screaming colors. Two women lounge with a playful red dog on a coral-red beach under a turquoise sky, while mango-orange figures dance in the background and acid-lime trees glow like neon. The entire canvas feels like it’s humming with heat, music, and fruit-punch sweetness—this is Gauguin at his most joyful, sensual, and color-drunk.</p>
+
+<p>This painting is literally titled “Joyousness” — and the colors this saturated and happy feel like they were invented for that exact emotion.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#E74C3C; border-radius:20px;"></div> <!-- coral red ground & dog -->
+  <div style="width:180px; height:90px; background:#00C4B4; border-radius:20px;"></div> <!-- turquoise sky & water -->
+  <div style="width:180px; height:90px; background:#FF8C42; border-radius:20px;"></div> <!-- mango orange figures -->
+  <div style="width:180px; height:90px; background:#A0FF00; border-radius:20px;"></div> <!-- acid lime trees -->
+</div>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Henri-Edmond Cross – The Pink Cloud (Antibes), 1906–1908</h2>  
+
+<p><strong>Hot Pink Cloud + Turquoise Sea + Lemon Yellow Beach + Lime Trees</strong>  </p>
+
+<p>A sunset that looks like cotton candy exploded over the French Riviera.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#FF69B4; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div>
+  <div style="width:180px; height:90px; background:#32CD32; border-radius:20px;"></div>
+</div>
+
+<p><img src="./2020.106_web.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('./2020.106_web.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h1>Claude Monet – Poppy Field near Argenteuil (Champ de coquelicots, environs d’Argenteuil), 1873</h1>
+
+<p><b>Vivid Scarlet Poppies + Ultramarine Sky + Emerald Green Grass + Lemon Yellow Highlights</b> </p>
+
+<p>The ultimate Monet color bomb: an endless sea of electric-red poppies explodes across the canvas, set against a perfect cobalt-and-ultramarine sky. The grass is pure saturated emerald, and tiny lemon-yellow wildflowers and Camille’s parasol pop like candy sprinkles. Painted en plein air on a perfect summer day, it’s so bright and joyful it feels like the sun itself is screaming in happiness.</p>
+
+<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
+  <div style="width:180px; height:90px; background:#E32636; border-radius:20px;"></div> <!-- screaming scarlet poppies -->
+  <div style="width:180px; height:90px; background:#002FA7; border-radius:20px;"></div> <!-- ultramarine sky -->
+  <div style="width:180px; height:90px; background:#008040; border-radius:20px;"></div> <!-- emerald grass -->
+  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div> <!-- lemon parasol & highlights -->
+</div>
+
+<p><img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2>Gustav Klimt – Flower Garden (Bauerngarten), 1907</h2>
+
+<p><strong>Emerald Green + Hot Magenta + Scarlet Red + Bright Orange + Lemon Yellow + Cobalt Blue</strong>  </p>
+
+<p>Klimt sprinkles vivid orange marigolds, nasturtiums, and tiger-lily flashes throughout the canvas. They act like little firecrackers among the cooler flowers and make the whole painting absolutely sing.</p>
+
+<div style="display:flex; gap:6px; flex-wrap:wrap; width:380px;">
+  <div style="width:120px; height:90px; background:#006400; border-radius:20px;"></div> <!-- emerald grass -->
+  <div style="width:120px; height:90px; background:#FF1493; border-radius:20px;"></div> <!-- hot magenta cosmos -->
+  <div style="width:120px; height:90px; background:#DC143C; border-radius:20px;"></div> <!-- scarlet poppies -->
+  <div style="width:120px; height:90px; background:#FF4500; border-radius:20px;"></div> <!-- bright orange marigolds & nasturtiums ← the missing star! -->
+  <div style="width:120px; height:90px; background:#FFD700; border-radius:20px;"></div> <!-- lemon yellow daisies -->
+  <div style="width:120px; height:90px; background:#0047AB; border-radius:20px;"></div> <!-- cobalt blue accents -->
+</div>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<h2> Yves Klein – Monochrome IKB (International Klein Blue), 1950s–1962</h2>
+
+<p><strong>Pure Ultramarine “IKB” (International Klein Blue)</strong>  </p>
+
+<p>It isn’t “just blue.”
+Yves Klein spent years searching for a blue that could carry pure spirit, a color so saturated and luminous that it feels weightless, infinite, and almost immaterial—like staring straight into the void of the sky at noon, or into the heart of a flame that forgot to burn.</p>
+
+<p>He finally created IKB 191 (the exact registered pigment): an ultramarine suspended in a revolutionary synthetic resin that keeps the matte velvet texture while making the color appear to float in front of the canvas. When you stand in front of a real Klein monochrome, the surface seems to dematerialize; there’s no brushstroke, no edge, no depth cue—only pure, vibrating blue that swallows space and time. People have cried in front of them. Others say it feels like flying.</p>
+
+<p>Klein called it “the most perfect expression of blue” and used it to paint pure sensation: no figures, no stories, no composition—just the color itself as the entire subject. To him, blue was freedom, infinity, the immaterial, the divine.</p>
+
+<div style="display:flex; gap:12px;">
+  <div style="width:180px; height:90px; background:#002FA7; border-radius:20px;"></div>
+</div>
+
+<p><img src="https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg" 
+     width="372" 
+     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
+     onclick="openLightbox('https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg')"></p>
+
+<div id="lightbox" class="lightbox" onclick="this.style.display='none'">
+  <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
+  <img id="lightbox-img">
+</div>
+
+<p>(That exact shade #002FA7 is International Klein Blue—he owned the formula.)</p>
+
+<script>
+function openLightbox(src) {
+  document.getElementById('lightbox').style.display='flex';
+  document.getElementById('lightbox-img').src = src;
+}
+</script>
+
+<p></body></p>
+
+<p></html></p>
+
+
+
+
+</body>
+
+</html>
