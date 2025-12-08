@@ -10,8 +10,8 @@
 <h4 align="center" class="click-hint"><i>🌸 Visit the gallery on GitHub Pages 🌸</i> </h4>
 
 <p></p>   
-<p align="center">
-  
-![HTML Validation](https://github.com/groda/color-combinations/actions/workflows/html-validate.yml/badge.svg)
 
-</p>
+![HTML Validation](https://github.com/groda/color-combinations/actions/workflows/html-validate.yml/badge.svg)
+![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
+![Prettier](https://github.com/groda/color-combinations/actions/workflows/prettier.yml/badge.svg)
+
