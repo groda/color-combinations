@@ -14,4 +14,5 @@
 ![HTML Validation](https://github.com/groda/color-combinations/actions/workflows/html-validate.yml/badge.svg)
 ![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
 ![ESLint](https://github.com/groda/color-combinations/actions/workflows/eslint.yml/badge.svg)
+![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)
 
