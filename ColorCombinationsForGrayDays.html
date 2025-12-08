@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>ColorCombos</title>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 <style type="text/css">
 body {
@@ -304,6 +305,73 @@ kbd {
   box-shadow: inset 0 -1px 0 #bbb
 }
 
+.swatch { position:relative; width:180px; height:100px; border-radius:20px; cursor:pointer; overflow:hidden; }
+.swatch .info { 
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:#fff; font-weight:bold; font-size:15px; background:rgba(0,0,0,0.25); backdrop-filter:blur(3px);
+  opacity:0; transition:opacity .25s;
+}
+.swatch:hover .info, .swatch.active .info { opacity:1; }
+
+.painting-container {
+  position: relative;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.painting-container img {
+  display: block;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all .25s;
+}
+.painting-container:hover img {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.painting-container::after {
+  content: "Click to enlarge";
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  font: 500 16px system-ui, sans-serif;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s;
+}
+.painting-container:hover::after {
+  opacity: 1;
+}
+
+
+
+.hexcode {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background: transparent !important;  
+  /*background:rgba(0,0,0,0.5); */
+  color:#fff; font-family:monospace; font-size:19px; font-weight:bold;
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);  /* makes the hex readable on any color */
+}
+
+.copybtn {
+  position:absolute; top:6px; right:6px; width:28px; height:28px;
+  background:rgba(255,255,255,0.97); border:none; border-radius:8px;
+  font-size:16px; cursor:pointer; opacity:0; transition:all .2s;
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);   /* ← this tiny shadow makes it pop */
+  backdrop-filter:blur(4px);               /* ← optional glass effect */
+}
+.swatch:hover .copybtn, .swatch.active .copybtn { opacity:1; }
+
+
+
+
 * {
 	-webkit-print-color-adjust: exact;
 }
@@ -349,16 +417,20 @@ kbd {
 
 <p><strong>Vivid Vermilion Red + Bright Turquoise</strong></p>
 
-<p>The famous red room with strong turquoise accents in the window view and table details. Extremely bold and happy. 
-<div style="display:flex; gap:12px;">
-  <div style="width:180px; height:100px; background:#E32636; border-radius:20px;"></div>
-  <div style="width:180px; height:100px; background:#00A1B7; border-radius:20px;"></div>
-</div></p>
+<p>The famous red room with strong turquoise accents in the window view and table details. Extremely bold and happy.</p>
+<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:100px; background:#E32636; border-radius:20px;">
+    <div class="info">Click for hex</div>
+  </div>
+  <div class="swatch" data-hex="#00A1B7" style="position:relative; width:180px; height:100px; background:#00A1B7; border-radius:20px;">
+    <div class="info">Click for hex</div>
+  </div>
+</div>
 
-<p><img src="https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg" 
+<div class="painting-container">
+    <img class="painting" src="https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg')"></p>
+     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -368,22 +440,27 @@ kbd {
 <h2>Matisse – Luxe, Calme et Volupté (1904)</h2>
 
 <p><strong>Emerald Green + Hot Magenta Pink</strong></p>
+<p>Pointillist divisionism with intense green landscapes and magenta-pink flesh/nudes. Feels tropical and playful.</p>
 
-<p>Pointillist divisionism with intense green landscapes and magenta-pink flesh/nudes. Feels tropical and playful.
-<div style="display:flex; gap:12px;">
-  <div style="width:180px; height:100px; background:#00A86B; border-radius:20px;"></div>
-  <div style="width:180px; height:100px; background:#FF1493; border-radius:20px;"></div>
-</div></p>
-
-<div style="display:flex; gap:12px;">
-  <div style="width:180px; height:100px; background:#E32636; border-radius:20px;"></div>
-  <div style="width:180px; height:100px; background:#00A1B7; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#00A86B" style="position:relative; width:180px; height:100px; background:#00A86B; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
+  <div class="swatch" data-hex="#FF1493" style="position:relative; width:180px; height:100px; background:#FF1493; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
+  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:100px; background:#E32636; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
+  <div class="swatch" data-hex="#00A1B7" style="position:relative; width:180px; height:100px; background:#00A1B7; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
 </div>
 
-<p><img src="https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg" 
+<div class="painting-container">
+<img class="painting" src="https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg')"></p>
+     onclick="openLightbox('https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -396,15 +473,19 @@ kbd {
 
 <p>One of the most joyful and intense still lifes Van Gogh painted during his year in Saint-Rémy. A simple earthenware vase bursts with electric cobalt-blue irises and emerald leaves against a glowing, almost fluorescent cadmium-yellow background. The complementary clash of blue and yellow creates pure visual fireworks—serene yet explosive, quiet yet screaming with life.</p>
 
-<div style="display:flex; gap:12px;">
-  <div style="width:180px; height:100px; background:#0047AB; border-radius:20px;"></div>
-  <div style="width:180px; height:100px; background:#FFD700; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#0047AB" style="position:relative; width:180px; height:100px; background:#0047AB; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
+  <div class="swatch" data-hex="#FFD700" style="position:relative; width:180px; height:100px; background:#FFD700; border-radius:20px;g">
+    <div class="info">Click for hex</div>
+  </div>
 </div>
 
-<p><img src="https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg" 
+<div class="painting-container">
+<img class="painting" src="https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg')"></p>
+     onclick="openLightbox('https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -417,16 +498,19 @@ kbd {
 
 <p>Primary colors at their most pure and punchy. Surprisingly cute because of the perfect balance.</p>
 
-<div style="display:flex; gap:6px;">
-  <div style="width:120px; height:100px; background:#D40000; border-radius:20px;"></div>
-  <div style="width:120px; height:100px; background:#0055FF; border-radius:20px;"></div>
-  <div style="width:120px; height:100px; background:#FFEE00; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#D40000" style="position:relative; width:120px; height:100px; background:#D40000; border-radius:20px;g">
+<div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#0055FF" style="position:relative; width:120px; height:100px; background:#0055FF; border-radius:20px;g">
+<div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFEE00" style="position:relative; width:120px; height:100px; background:#FFEE00; border-radius:20px;g">
+<div class="info">Click for hex</div></div>
 </div>
 
-<p><img src="https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg" 
+<div class="painting-container">
+<img class="painting" src="https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg')"></p>
+     onclick="openLightbox('https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -441,16 +525,19 @@ kbd {
 
 <p>A hypnotic close-up of purple irises growing straight out of the garden soil. Van Gogh skips the vase entirely and paints the flowers against a raw patch of earth and sky. The petals are pure electric violet, the shadows plunge into almost black-indigo, and the leaves and stems flash with that unmistakable Van Gogh acid-lime green that makes the whole canvas vibrate like neon.</p>
 
-<div style="display:flex; gap:6px;">
-  <div style="width:120px; height:100px; background:#8A2BE2; border-radius:20px;"></div>  <!-- vivid violet petals -->
-  <div style="width:120px; height:100px; background:#4B0082; border-radius:20px;"></div>  <!-- deep indigo shadows & soil -->
-  <div style="width:120px; height:100px; background:#00FF7F; border-radius:20px;"></div>  <!-- acid spring-green leaves -->
+<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#8A2BE2" style="position:relative; width:120px; height:100px; background:#8A2BE2; border-radius:20px;g">
+<div class="info">Click for hex</div></div>  <!-- vivid violet petals -->
+  <div class="swatch" data-hex="#4B0082" style="position:relative; width:120px; height:100px; background:#4B0082; border-radius:20px;g">
+<div class="info">Click for hex</div></div>  <!-- deep indigo shadows & soil -->
+  <div class="swatch" data-hex="#00FF7F" style="position:relative; width:120px; height:100px; background:#00FF7F; border-radius:20px;g">
+<div class="info">Click for hex</div></div>  <!-- acid spring-green leaves -->
 </div>
 
-<p><img src="https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg" 
+<div class="painting-container">
+<img class="painting" src="https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg')"></p>
+     onclick="openLightbox('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -463,16 +550,18 @@ kbd {
 
 <p>Painted as a tender tribute to Anton Mauve after his death, this is Van Gogh at his most candy-sweet and joyful. Delicate peach trees explode into clouds of bubblegum-pink and hot-magenta blossoms against a fresh mint-green sky and field. It’s pure springtime euphoria—soft yet insanely vivid, like strawberry ice cream under a lime sky.</p>
 
-<div style="display:flex; gap:6px;">
-  <div style="width:120px; height:100px; background:#FF69B4; border-radius:20px;"></div> <!-- hot pink blossoms -->
-  <div style="width:120px; height:100px; background:#FF1493; border-radius:20px;"></div> <!-- deeper magenta pink -->
-  <div style="width:120px; height:100px; background:#98FB98; border-radius:20px;"></div> <!-- minty spring green -->
+<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:120px; height:100px; background:#FF69B4; border-radius:20px;g">
+<div class="info">Click for hex</div></div> <!-- hot pink blossoms -->
+  <div class="swatch" data-hex="#FF1493" style="position:relative; width:120px; height:100px; background:#FF1493; border-radius:20px;g">
+<div class="info">Click for hex</div></div> <!-- deeper magenta pink -->
+  <div class="swatch" data-hex="#98FB98" style="position:relative; width:120px; height:100px; background:#98FB98; border-radius:20px;g">
+<div class="info">Click for hex</div></div> <!-- minty spring green -->
 </div>
 
-<p><img src="https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg" 
+<div class="painting-container"><img class="painting" src="https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg')"></p>
+     onclick="openLightbox('https://krollermuller.nl/media/cache/collection_item_detail_large/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -485,17 +574,20 @@ kbd {
 
 <p>The painting that scandalized Paris and launched Fauvism. Matisse’s wife Amélie sits in an ordinary chair wearing an elaborate hat, but everything is transformed into pure, explosive color: her face is painted with turquoise shadows and fuchsia highlights, the hat is a riot of hot pink and emerald, and wild strokes of lemon yellow streak across the background. It’s bold, fearless, and strangely joyful—like a tropical bird exploded in the middle of a Parisian salon.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>  <!-- turquoise -->
-  <div style="width:180px; height:90px; background:#FF0090; border-radius:20px;"></div>  <!-- fuchsia / hot magenta -->
-  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div>  <!-- lemon yellow -->
-  <div style="width:180px; height:90px; background:#008040; border-radius:20px;"></div>  <!-- emerald green -->
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;g">
+    <div class="info">Click for hex</div></div>  <!-- turquoise -->
+  <div class="swatch" data-hex="#FF0090" style="position:relative; width:180px; height:90px; background:#FF0090; border-radius:20px;g">
+    <div class="info">Click for hex</div></div>  <!-- fuchsia / hot magenta -->
+  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;g">
+    <div class="info">Click for hex</div></div>  <!-- lemon yellow -->
+  <div class="swatch" data-hex="#008040" style="position:relative; width:180px; height:90px; background:#008040; border-radius:20px;g">
+    <div class="info">Click for hex</div></div>  <!-- emerald green -->
 </div>
 
-<p><img src="https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg" 
+<div class="painting-container"><img class="painting" src="https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg')"></p>
+     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -508,17 +600,16 @@ kbd {
 
 <p>Horses made of pure electric color—somehow both wild and adorable.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#0000FF; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#FF0000; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#FF69B4; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#FFFF00; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#0000FF" style="position:relative; width:180px; height:90px; background:#0000FF; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF0000" style="position:relative; width:180px; height:90px; background:#FF0000; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:180px; height:90px; background:#FF69B4; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF00" style="position:relative; width:180px; height:90px; background:#FFFF00; border-radius:20px;g"><div class="info">Click for hex</div></div>
 </div>
 
-<p><img src="https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5" 
+<div class="painting-container"><img class="painting" src="https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5')"></p>
+     onclick="openLightbox('https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -531,16 +622,15 @@ kbd {
 
 <p>One of Van Gogh’s final and most dramatic paintings, painted in Auvers-sur-Oise just weeks before his death. A stormy, almost electric ultramarine sky churns with thick, violent brushstrokes, pressing down on a turbulent sea of golden-yellow wheat. Three dark paths cut through the field like lost roads, and a flock of black crows rises ominously—yet the colors remain unbelievably vivid and alive, like a scream in neon. It’s apocalyptic, intense, and strangely beautiful—like the end of the world painted in candy that’s gone slightly toxic.</p>
 
-<div style="display:flex; gap:6px; flex-wrap:wrap;">
-  <div style="width:120px; height:110px; background:#002FA7; border-radius:24px;"></div> <!-- that famous radioactive ultramarine -->
-  <div style="width:120px; height:110px; background:#FFD700; border-radius:24px;"></div> <!-- molten gold wheat -->
-  <div style="width:120px; height:110px; background:#000000; border-radius:24px;"></div> <!-- the ominous black crows -->
+<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#002FA7" style="position:relative; width:120px; height:110px; background:#002FA7; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- that famous radioactive ultramarine -->
+  <div class="swatch" data-hex="#FFD700" style="position:relative; width:120px; height:110px; background:#FFD700; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- molten gold wheat -->
+  <div class="swatch" data-hex="#000000" style="position:relative; width:120px; height:110px; background:#000000; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- the ominous black crows -->
 </div>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg" 
+<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg')"></p>
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -553,17 +643,16 @@ kbd {
 
 <p>Picasso painting his wife Jacqueline as a walking tropical punch bowl – pure 1950s Riviera joy.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#FF4040; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#BFFF00; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#FF1493; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#FF4040" style="position:relative; width:180px; height:90px; background:#FF4040; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#BFFF00" style="position:relative; width:180px; height:90px; background:#BFFF00; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF1493" style="position:relative; width:180px; height:90px; background:#FF1493; border-radius:20px;g"><div class="info">Click for hex</div></div>
 </div>
 
-<p><img src="https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg" 
+<div class="painting-container"><img class="painting" src="https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg')"></p>
+     onclick="openLightbox('https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -578,17 +667,16 @@ kbd {
 
 <p>This painting is literally titled “Joyousness” — and the colors this saturated and happy feel like they were invented for that exact emotion.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#E74C3C; border-radius:20px;"></div> <!-- coral red ground & dog -->
-  <div style="width:180px; height:90px; background:#00C4B4; border-radius:20px;"></div> <!-- turquoise sky & water -->
-  <div style="width:180px; height:90px; background:#FF8C42; border-radius:20px;"></div> <!-- mango orange figures -->
-  <div style="width:180px; height:90px; background:#A0FF00; border-radius:20px;"></div> <!-- acid lime trees -->
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#E74C3C" style="position:relative; width:180px; height:90px; background:#E74C3C; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- coral red ground & dog -->
+  <div class="swatch" data-hex="#00C4B4" style="position:relative; width:180px; height:90px; background:#00C4B4; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- turquoise sky & water -->
+  <div class="swatch" data-hex="#FF8C42" style="position:relative; width:180px; height:90px; background:#FF8C42; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- mango orange figures -->
+  <div class="swatch" data-hex="#A0FF00" style="position:relative; width:180px; height:90px; background:#A0FF00; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- acid lime trees -->
 </div>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg" 
+<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg')"></p>
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -601,17 +689,16 @@ kbd {
 
 <p>A sunset that looks like cotton candy exploded over the French Riviera.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#FF69B4; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#40E0D0; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div>
-  <div style="width:180px; height:90px; background:#32CD32; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:180px; height:90px; background:#FF69B4; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;g"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#32CD32" style="position:relative; width:180px; height:90px; background:#32CD32; border-radius:20px;g"><div class="info">Click for hex</div></div>
 </div>
 
-<p><img src="./2020.106_web.jpg" 
+<div class="painting-container"><img class="painting" src="./2020.106_web.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('./2020.106_web.jpg')"></p>
+     onclick="openLightbox('./2020.106_web.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -624,17 +711,16 @@ kbd {
 
 <p>The ultimate Monet color bomb: an endless sea of electric-red poppies explodes across the canvas, set against a perfect cobalt-and-ultramarine sky. The grass is pure saturated emerald, and tiny lemon-yellow wildflowers and Camille’s parasol pop like candy sprinkles. Painted en plein air on a perfect summer day, it’s so bright and joyful it feels like the sun itself is screaming in happiness.</p>
 
-<div style="display:flex; gap:12px; flex-wrap:wrap; width:380px;">
-  <div style="width:180px; height:90px; background:#E32636; border-radius:20px;"></div> <!-- screaming scarlet poppies -->
-  <div style="width:180px; height:90px; background:#002FA7; border-radius:20px;"></div> <!-- ultramarine sky -->
-  <div style="width:180px; height:90px; background:#008040; border-radius:20px;"></div> <!-- emerald grass -->
-  <div style="width:180px; height:90px; background:#FFFF66; border-radius:20px;"></div> <!-- lemon parasol & highlights -->
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:90px; background:#E32636; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- screaming scarlet poppies -->
+  <div class="swatch" data-hex="#002FA7" style="position:relative; width:180px; height:90px; background:#002FA7; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- ultramarine sky -->
+  <div class="swatch" data-hex="#008040" style="position:relative; width:180px; height:90px; background:#008040; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- emerald grass -->
+  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- lemon parasol & highlights -->
 </div>
 
-<p><img src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg" 
+<div class="painting-container"><img class="painting" src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg')"></p>
+     onclick="openLightbox('https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -647,19 +733,18 @@ kbd {
 
 <p>Klimt sprinkles vivid orange marigolds, nasturtiums, and tiger-lily flashes throughout the canvas. They act like little firecrackers among the cooler flowers and make the whole painting absolutely sing.</p>
 
-<div style="display:flex; gap:6px; flex-wrap:wrap; width:380px;">
-  <div style="width:120px; height:90px; background:#006400; border-radius:20px;"></div> <!-- emerald grass -->
-  <div style="width:120px; height:90px; background:#FF1493; border-radius:20px;"></div> <!-- hot magenta cosmos -->
-  <div style="width:120px; height:90px; background:#DC143C; border-radius:20px;"></div> <!-- scarlet poppies -->
-  <div style="width:120px; height:90px; background:#FF4500; border-radius:20px;"></div> <!-- bright orange marigolds & nasturtiums ← the missing star! -->
-  <div style="width:120px; height:90px; background:#FFD700; border-radius:20px;"></div> <!-- lemon yellow daisies -->
-  <div style="width:120px; height:90px; background:#0047AB; border-radius:20px;"></div> <!-- cobalt blue accents -->
+<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#006400" style="position:relative; width:120px; height:90px; background:#006400; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- emerald grass -->
+  <div class="swatch" data-hex="#FF1493" style="position:relative; width:120px; height:90px; background:#FF1493; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- hot magenta cosmos -->
+  <div class="swatch" data-hex="#DC143C" style="position:relative; width:120px; height:90px; background:#DC143C; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- scarlet poppies -->
+  <div class="swatch" data-hex="#FF4500" style="position:relative; width:120px; height:90px; background:#FF4500; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- bright orange marigolds & nasturtiums ← the missing star! -->
+  <div class="swatch" data-hex="#FFD700" style="position:relative; width:120px; height:90px; background:#FFD700; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- lemon yellow daisies -->
+  <div class="swatch" data-hex="#0047AB" style="position:relative; width:120px; height:90px; background:#0047AB; border-radius:20px;g"><div class="info">Click for hex</div></div> <!-- cobalt blue accents -->
 </div>
 
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg" 
+<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg')"></p>
+     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -677,14 +762,13 @@ Yves Klein spent years searching for a blue that could carry pure spirit, a colo
 
 <p>Klein called it “the most perfect expression of blue” and used it to paint pure sensation: no figures, no stories, no composition—just the color itself as the entire subject. To him, blue was freedom, infinity, the immaterial, the divine.</p>
 
-<div style="display:flex; gap:12px;">
-  <div style="width:180px; height:90px; background:#002FA7; border-radius:20px;"></div>
+<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
+  <div class="swatch" data-hex="#002FA7" style="position:relative; width:180px; height:90px; background:#002FA7; border-radius:20px;g"><div class="info">Click for hex</div></div>
 </div>
 
-<p><img src="https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg" 
+<div class="painting-container"><img class="painting" src="https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg" 
      width="372" 
-     style="border-radius:12px; cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,0.15);"
-     onclick="openLightbox('https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg')"></p>
+     onclick="openLightbox('https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg')"></div>
 
 <div id="lightbox" class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.getElementById('lightbox').style.display='none'">×</span>
@@ -698,15 +782,44 @@ function openLightbox(src) {
   document.getElementById('lightbox').style.display='flex';
   document.getElementById('lightbox-img').src = src;
 }
+// Click any swatch → show hex + copy button
+
+document.querySelectorAll('.swatch').forEach(swatch => {
+  swatch.addEventListener('click', e => {
+    e.stopPropagation();
+    document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+
+    const hex = swatch.dataset.hex;
+    swatch.innerHTML = `
+      <div class="hexcode">${hex}</div>
+      <button class="copybtn" title="Copy hex">
+        <i class="fa-solid fa-copy"></i>
+      </button>
+    `;
+    swatch.classList.add('active');
+
+    swatch.querySelector('.copybtn').addEventListener('click', ev => {
+      ev.stopPropagation();
+      navigator.clipboard.writeText(hex);
+      swatch.querySelector('i').classList.replace('fa-copy', 'fa-check');
+      setTimeout(() => swatch.querySelector('i').classList.replace('fa-check', 'fa-copy'), 1200);
+    });
+  });
+});
+
+document.addEventListener('click', () => {
+  document.querySelectorAll('.swatch.active').forEach(s => {
+    s.innerHTML = '<div class="info">Click for hex</div>';
+    s.classList.remove('active');
+  });
+});
+
+
 </script>
-
-<p></body></p>
-
-<p></html></p>
-
-
 
 
 </body>
 
 </html>
+
+
