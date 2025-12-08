@@ -8,13 +8,14 @@ on:
 jobs:
   prettier:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v5
-      
-      - name: Install dependencies
-        run: |
-          npm install --global prettier
+
+      - name: Install Prettier
+        run: npm install --global prettier
 
       - name: Check formatting
         run: |
-          prettier --check "**/*.{html,css,js}"
+          # Show which files fail (instead of silent exit 1)
+          prettier --check --list-different "**/*.{html,css,js}"
