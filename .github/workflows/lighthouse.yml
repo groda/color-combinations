@@ -32,7 +32,7 @@ jobs:
 
       # 5️⃣ Run Lighthouse on the dynamic URL
       - name: Run Lighthouse
-        run: |
+        run: | 
           echo "Testing $URL"
           lighthouse "$URL" \
             --output=json \
@@ -44,5 +44,7 @@ jobs:
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4
         with:
-          name: lighthouse-report
-          path: lighthouse-report.html
+          name: lighthouse-reports
+          path: |
+            lighthouse-report.html
+            lighthouse-report.json
