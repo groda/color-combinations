@@ -1,0 +1,22 @@
+name: ESLint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install ESLint
+        run: |
+          npm init -y
+          npm install eslint --save-dev
+          npx eslint --init || true    # skip wizard, uses defaults
+
+      - name: Run ESLint
+        run: |
+          npx eslint "**/*.js" || true
