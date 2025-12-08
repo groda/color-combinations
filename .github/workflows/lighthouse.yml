@@ -46,5 +46,5 @@ jobs:
         with:
           name: lighthouse-reports
           path: |
-            lighthouse-report.html
-            lighthouse-report.json
+            lighthouse-report.report.html
+            lighthouse-report.report.json
