@@ -15,7 +15,7 @@ This repository uses GitHub Actions to automate code quality checks.
 The **HTML Validation** workflow automatically checks HTML files in the repository for compliance with HTML5 standards. It helps catch structural errors, invalid markup, and common mistakes early in the development process.
 
 
-### Workflow File [`html-validate.yml`](.github/workflows/html-validate.yml)
+### Workflow File [`html-validate.yml`](../.github/workflows/html-validate.yml)
 ```
 name: HTML Validation
 
@@ -97,7 +97,7 @@ This workflow helps to:
 
 The **ESLint** workflow runs automated linting checks to ensure JavaScript code follows consistent style rules and avoids common errors.
 
-### Workflow File [`eslint.yml`](.github/workflows/eslint.yml)
+### Workflow File [`eslint.yml`](../.github/workflows/eslint.yml)
 
 ```
 name: ESLint
@@ -198,7 +198,7 @@ When issues are found, it generates a report and opens a GitHub issue with the r
 This workflow is designed to run **on a schedule** as well as **on demand**, making it suitable for ongoing documentation maintenance.
 
 
-### Workflow File `.github/workflows/links.yml`
+### Workflow File [`links.yml`](../.github/workflows/links.yml)
 
 ```
 name: Links
@@ -313,7 +313,7 @@ It evaluates performance, accessibility, best practices, and SEO, and produces d
 The workflow generates both **HTML and JSON reports**, which are stored as downloadable artifacts.
 
 
-### Workflow File `.github/workflows/lighthouse.yml`
+### Workflow File [`lighthouse.yml`](../.github/workflows/lighthouse.yml)
 
 ```
 name: Lighthouse CI
