@@ -8,6 +8,7 @@ This repository uses GitHub Actions to automate code quality checks.
   * [ESLint](#eslint)
   * [Link Checker](#link-checker)
   * [Lighthouse CI](#lighthouse-ci)
+  * [Secrets Scanning (Gitleaks)](#secrets-scanning-gitleaks)
 
 
 ## HTML Validation
@@ -441,3 +442,88 @@ This workflow helps:
 * Upload reports to Lighthouse CI Server
 * Comment results directly on pull requests
 * Track historical performance trends
+
+
+
+## Secrets Scanning (Gitleaks)
+
+The **Secrets Scanning** workflow uses **Gitleaks** to automatically detect hard-coded secrets in the repository.
+It helps prevent accidental commits of sensitive information such as API keys, tokens, passwords, and private credentials.
+
+### Workflow File [`gitleaks.yml`](../.github/workflows/gitleaks.yml)
+
+```yaml
+name: Secrets Scan (Gitleaks)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+```
+
+### Triggers
+
+The workflow runs automatically on:
+
+* **Pushes to the `main` branch**
+* **All pull requests**
+
+This ensures secrets are detected both during development and before changes are merged.
+
+### Job: `gitleaks`
+
+#### Environment
+
+* **Runner:** `ubuntu-latest`
+
+### Steps Breakdown
+
+1. **Checkout Repository**
+   Fetches the repository content so Gitleaks can scan the full codebase and commit history.
+
+2. **Run Gitleaks**
+   Executes the Gitleaks scanner with default rules.
+
+   * Scans source files and commit diffs
+   * Detects common secret patterns (API keys, tokens, credentials)
+   * Fails the workflow if a potential secret is found
+
+### Purpose
+
+This workflow helps to:
+
+* Prevent accidental leakage of secrets
+* Improve repository security hygiene
+* Catch sensitive data before it reaches production or public repositories
+* Support secure development practices
+
+### Scope
+
+* Scans all tracked files in the repository
+* Uses Gitleaks’ default rule set
+* Analyzes changes introduced in commits and pull requests
+
+### Limitations
+
+* May report **false positives** for test data or dummy values
+* Does not automatically redact or remove secrets
+* Does not rotate or invalidate leaked credentials
+* Custom rules require additional configuration
+
+
+### Possible Enhancements
+
+* Add a custom `.gitleaks.toml` configuration file
+* Allowlist known false positives
+* Scan full git history explicitly if needed
+* Combine with branch protection rules to block merges on findings
+* Integrate secret rotation or alerting workflows
