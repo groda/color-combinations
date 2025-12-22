@@ -15,5 +15,5 @@
 ![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
 ![ESLint](https://github.com/groda/color-combinations/actions/workflows/eslint.yml/badge.svg)
 ![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)
-![Security Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)
+![Gitleaks Secret Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)
 
