@@ -5,19 +5,21 @@ This repository uses GitHub Actions to automate code quality checks.
 ## Table of Contents
  
   * [HTML Validation](#html-validation)
-  * [ESLint](#eslint)
-  * [Link Checker](#link-checker)
-  * [Lighthouse CI](#lighthouse-ci)
+  * [ESLint (JS linting)](#eslint)
+  * [Stylelint (CSS linting)](#stylelint)
+  * [Links (links checker)](#link-check)
+  * [Lighthouse CI (accessibility & quality)](#lighthouse-ci)
   * [Secrets Scanning (Gitleaks)](#secrets-scanning-gitleaks)
 
 
-## HTML Validation
+# HTML Validation
 
 The **HTML Validation** workflow automatically checks HTML files in the repository for compliance with HTML5 standards. It helps catch structural errors, invalid markup, and common mistakes early in the development process.
 
 
-### Workflow File [`html-validate.yml`](../.github/workflows/html-validate.yml)
-```
+## Workflow File [`html-validate.yml`](../.github/workflows/html-validate.yml)
+
+```yaml
 name: HTML Validation
 
 on:
@@ -36,7 +38,7 @@ jobs:
           root: .
 ```
 
-### Triggers
+## Triggers
 
 The workflow runs automatically on:
 
@@ -45,12 +47,11 @@ The workflow runs automatically on:
 
 This ensures that HTML validity is checked both during development and before code is merged.
 
-### Job: `validate`
+## Job: `validate`
 
 #### Environment
 
 * **Runner:** `ubuntu-latest`
-
 
 #### Steps Breakdown
 
@@ -63,7 +64,7 @@ This ensures that HTML validity is checked both during development and before co
   * Checks markup against HTML5 standards
   * Reports validation errors and warnings in the workflow logs
 
-### Purpose
+## Purpose
 
 This workflow helps to:
 
@@ -72,12 +73,12 @@ This workflow helps to:
 * Improve browser compatibility and accessibility
 * Maintain consistent code quality for frontend assets
 
-### Scope
+## Scope
 
 * Validates all HTML files under the repository root (`.`)
 * Uses the W3C HTML5 validation rules via the GitHub Action
 
-### Limitations
+## Limitations
 
 * Does not validate CSS or JavaScript
 * Does not enforce accessibility (ARIA) rules
@@ -85,7 +86,7 @@ This workflow helps to:
 * Validation results are informational unless enforced by branch protection rules
 
 
-### Possible Enhancements
+## Possible Enhancements
 
 * Restrict validation to specific directories
 * Add accessibility validation (e.g. WCAG checks)
@@ -94,13 +95,13 @@ This workflow helps to:
 
 
 
-## ESLint
+# ESLint
 
 The **ESLint** workflow runs automated linting checks to ensure JavaScript code follows consistent style rules and avoids common errors.
 
-### Workflow File [`eslint.yml`](../.github/workflows/eslint.yml)
+## Workflow File [`eslint.yml`](../.github/workflows/eslint.yml)
 
-```
+```yaml
 name: ESLint
 
 on:
@@ -125,7 +126,7 @@ jobs:
           npx eslint "**/*.js" || true
 ```
 
-### Triggers
+## Triggers
 
 The workflow runs automatically on:
 
@@ -134,7 +135,7 @@ The workflow runs automatically on:
 
 This ensures linting feedback is available both during development and before merging changes.
 
-### Job: `eslint`
+## Job: `eslint`
 
 #### Environment
 
@@ -161,7 +162,7 @@ This allows ESLint to run even if the repository does not already contain a Node
 
     Lint errors are reported in the workflow logs but **do not cause the job to fail**.
 
-### Design Decisions
+## Design Decisions
 
 #### Non-blocking Linting
 
@@ -173,25 +174,127 @@ Lint commands are executed with error suppression, allowing:
 
 This is useful for legacy codebases or early-stage projects.
 
-### Limitations
+## Limitations
 
 * Uses ESLint default configuration
 * Does not lint TypeScript files
 * Does not enforce lint errors as failures
 * Does not cache dependencies
 
-### Future Improvements
+## Future Improvements
 
 Possible enhancements include:
 
 * Adding a custom ESLint configuration file
 * Enabling lint failures to block merges
+  - change `npx eslint "**/*.js" || true` to `npx eslint "**/*.js"` to fail on errors but tolerate warnings
+  - change `npx eslint "**/*.js" || true` to `npx eslint "**/*.js" --max-warnings=0` for strict check (not even warnings allowed)
 * Supporting TypeScript (`.ts`) files
 * Adding dependency caching for faster runs
 
 
 
-## Link Checker
+# CSS Stylelint
+
+The **CSS Stylelint** workflow automatically checks CSS files in the repository
+for stylistic consistency, common mistakes, and best-practice violations.
+It helps maintain clean, readable, and consistent CSS code.
+
+
+## Workflow File [`stylelint.yml`](../.github/workflows/stylelint.yml)
+
+```yaml
+name: CSS Stylelint
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  stylelint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Stylelint
+        run: |
+          npm install --global stylelint stylelint-config-standard
+
+      - name: Run Stylelint
+        run: |
+          stylelint "**/*.css"
+
+
+## Triggers
+
+The workflow runs automatically on:
+
+* **Pushes to the `main` branch**
+* **All pull requests**
+
+This ensures CSS quality is checked during development and before merging.
+
+
+## Job: `stylelint`
+
+#### Environment
+
+* **Runner:** `ubuntu-latest`
+
+
+### Steps Breakdown
+
+1. **Checkout Repository**
+   Fetches the repository content so CSS files can be analyzed.
+
+2. **Install Stylelint**
+   Installs Stylelint along with the standard configuration ruleset.
+
+3. **Run Stylelint**
+   Scans all CSS files in the repository and reports:
+
+   * Syntax errors
+   * Invalid or unknown properties
+   * Inconsistent formatting
+   * Common CSS mistakes
+
+
+## Purpose
+
+This workflow helps to:
+
+* Enforce consistent CSS styling
+* Catch errors and invalid CSS early
+* Improve maintainability and readability
+* Prevent regressions in frontend styling
+
+
+## Scope
+
+* Lints all `.css` files in the repository
+* Uses the `stylelint-config-standard` ruleset
+
+
+## Limitations
+
+* Does not auto-fix issues
+* Does not validate HTML or JavaScript
+* Does not check accessibility or performance
+* Requires Node.js tooling
+
+
+## Possible Enhancements
+
+* Add a custom `.stylelintrc` configuration
+* Enable auto-fixing in local development
+* Restrict linting to specific directories
+* Integrate with Prettier (optional)
+
+
+
+
+# Link Checker
 
 The **Links** workflow automatically scans the repository for broken or unreachable links.
 When issues are found, it generates a report and opens a GitHub issue with the results, ensuring broken links are tracked and addressed.
@@ -199,9 +302,9 @@ When issues are found, it generates a report and opens a GitHub issue with the r
 This workflow is designed to run **on a schedule** as well as **on demand**, making it suitable for ongoing documentation maintenance.
 
 
-### Workflow File [`link-check.yml`](../.github/workflows/link-check.yml)
+## Workflow File [`link-check.yml`](../.github/workflows/link-check.yml)
 
-```
+```yaml
 name: Links
 
 on:
@@ -233,7 +336,7 @@ jobs:
           labels: report, automated issue
 ```
 
-### Triggers
+## Triggers
 
 The workflow runs under the following conditions:
 
@@ -244,7 +347,7 @@ The workflow runs under the following conditions:
 This allows both automated monitoring and manual or external invocation.
 
 
-### Job: `linkChecker`
+## Job: `linkChecker`
 
 #### Environment
 
@@ -275,7 +378,7 @@ This allows both automated monitoring and manual or external invocation.
      * `automated issue`
     * Ensures broken links are visible and actionable without blocking CI
 
-### Design Decisions
+## Design Decisions
 
 #### Non-blocking Validation
 
@@ -291,14 +394,14 @@ Rather than relying solely on CI logs, results are persisted as GitHub issues, m
 * Auditable over time
 
 
-### Use Cases
+## Use Cases
 
 * Documentation repositories
 * Static websites
 * Markdown-heavy projects
 * Periodic quality checks for external links
 
-### Possible Enhancements
+## Possible Enhancements
 
 * Restrict link checking to specific directories or file types
 * Automatically close issues when links are fixed
@@ -306,7 +409,7 @@ Rather than relying solely on CI logs, results are persisted as GitHub issues, m
 * Fail the workflow for critical documentation paths
 
 
-## Lighthouse CI
+# Lighthouse CI
 
 The **Lighthouse CI** workflow runs automated Lighthouse audits against the project’s **GitHub Pages deployment**.
 It evaluates performance, accessibility, best practices, and SEO, and produces detailed reports for each run.
@@ -314,9 +417,9 @@ It evaluates performance, accessibility, best practices, and SEO, and produces d
 The workflow generates both **HTML and JSON reports**, which are stored as downloadable artifacts.
 
 
-### Workflow File [`lighthouse.yml`](../.github/workflows/lighthouse.yml)
+## Workflow File [`lighthouse.yml`](../.github/workflows/lighthouse.yml)
 
-```
+```yaml
 name: Lighthouse CI
 
 on:
@@ -370,7 +473,7 @@ jobs:
 ```
 
 
-### Triggers
+## Triggers
 
 The workflow runs automatically on:
 
@@ -379,7 +482,7 @@ The workflow runs automatically on:
 
 This ensures Lighthouse metrics are continuously monitored as changes are introduced.
 
-### Job: `lighthouse`
+## Job: `lighthouse`
 
 #### Environment
 
@@ -413,7 +516,7 @@ This ensures Lighthouse metrics are continuously monitored as changes are introd
   * Artifacts are available for download from the workflow run
   * Useful for comparing results across commits and pull requests
 
-### Purpose
+## Purpose
 
 This workflow helps:
 
@@ -422,20 +525,20 @@ This workflow helps:
 * Enforce web best practices
 * Provide objective metrics for UI changes
 
-### Design Notes
+## Design Notes
 
 * The workflow assumes the site is published via **GitHub Pages**
 * Reports are informational and **do not fail the CI pipeline**
 * Metrics are captured at build time, not during local development
 
-### Limitations
+## Limitations
 
 * Requires GitHub Pages to be enabled and publicly accessible
 * Does not set score thresholds or fail on regressions
 * Does not post results as comments or issues
 * Audits a single URL (homepage only)
 
-### Possible Enhancements
+## Possible Enhancements
 
 * Enforce minimum Lighthouse score thresholds
 * Audit additional routes or pages
@@ -445,12 +548,12 @@ This workflow helps:
 
 
 
-## Secrets Scanning (Gitleaks)
+# Secrets Scanning (Gitleaks)
 
-The **Secrets Scanning** workflow uses **Gitleaks** to automatically detect hard-coded secrets in the repository.
+The **Secrets Scan** workflow uses **Gitleaks** to automatically detect hard-coded secrets in the repository.
 It helps prevent accidental commits of sensitive information such as API keys, tokens, passwords, and private credentials.
 
-### Workflow File [`gitleaks.yml`](../.github/workflows/gitleaks.yml)
+## Workflow File [`gitleaks.yml`](../.github/workflows/gitleaks.yml)
 
 ```yaml
 name: Secrets Scan (Gitleaks)
@@ -470,7 +573,7 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
 ```
 
-### Triggers
+## Triggers
 
 The workflow runs automatically on:
 
@@ -479,7 +582,7 @@ The workflow runs automatically on:
 
 This ensures secrets are detected both during development and before changes are merged.
 
-### Job: `gitleaks`
+## Job: `gitleaks`
 
 #### Environment
 
@@ -497,7 +600,7 @@ This ensures secrets are detected both during development and before changes are
    * Detects common secret patterns (API keys, tokens, credentials)
    * Fails the workflow if a potential secret is found
 
-### Purpose
+## Purpose
 
 This workflow helps to:
 
@@ -506,13 +609,13 @@ This workflow helps to:
 * Catch sensitive data before it reaches production or public repositories
 * Support secure development practices
 
-### Scope
+## Scope
 
 * Scans all tracked files in the repository
 * Uses Gitleaks’ default rule set
 * Analyzes changes introduced in commits and pull requests
 
-### Limitations
+## Limitations
 
 * May report **false positives** for test data or dummy values
 * Does not automatically redact or remove secrets
@@ -520,7 +623,7 @@ This workflow helps to:
 * Custom rules require additional configuration
 
 
-### Possible Enhancements
+## Possible Enhancements
 
 * Add a custom `.gitleaks.toml` configuration file
 * Allowlist known false positives
