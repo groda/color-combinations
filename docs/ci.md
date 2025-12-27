@@ -199,7 +199,7 @@ When issues are found, it generates a report and opens a GitHub issue with the r
 This workflow is designed to run **on a schedule** as well as **on demand**, making it suitable for ongoing documentation maintenance.
 
 
-### Workflow File [`links.yml`](../.github/workflows/links.yml)
+### Workflow File [`link-check.yml`](../.github/workflows/link-check.yml)
 
 ```
 name: Links
