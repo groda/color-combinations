@@ -13,7 +13,7 @@ The CI setup covers frontend correctness, styling consistency, broken links, acc
 
 ## Table of Contents
  
-  * [Why CI & Automation Matter](#why-ci-and-automation-matter)
+  * [Why CI & Automation Matter](#why-ci--automation-matter)
   * [HTML Validation](#html-validation)
   * [ESLint (JS linting)](#eslint)
   * [Stylelint (CSS linting)](#stylelint)
@@ -240,7 +240,7 @@ jobs:
       - name: Run Stylelint
         run: |
           stylelint "**/*.css"
-
+```
 
 ## Triggers
 
