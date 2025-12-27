@@ -2,14 +2,30 @@
 
 This repository uses GitHub Actions to automate code quality checks.
 
+The CI setup covers frontend correctness, styling consistency, broken links, accessibility audits, and secret scanning — providing confidence that changes are safe, maintainable, and production-ready.
+
+![HTML Validation](https://github.com/groda/color-combinations/actions/workflows/html-validate.yml/badge.svg)
+![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
+![ESLint](https://github.com/groda/color-combinations/actions/workflows/eslint.yml/badge.svg)
+![CSS Stylelint](https://github.com/groda/color-combinations/actions/workflows/stylelint.yml/badge.svg)
+![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)
+![Gitleaks Secret Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)
+
 ## Table of Contents
  
+  * [Why CI & Automation Matter](#why-ci-and-automation-matter)
   * [HTML Validation](#html-validation)
   * [ESLint (JS linting)](#eslint)
   * [Stylelint (CSS linting)](#stylelint)
   * [Links (links checker)](#link-check)
   * [Lighthouse CI (accessibility & quality)](#lighthouse-ci)
   * [Secrets Scanning (Gitleaks)](#secrets-scanning-gitleaks)
+
+
+# Why CI & Automation Matter
+
+Continuous Integration (CI) and automation are essential for maintaining code quality, reliability, and long-term maintainability—even for small or static projects. By automating repetitive checks such as validation, linting, accessibility audits, and security scans, potential issues are detected early and consistently, without relying on manual review. This not only reduces human error, but also provides immediate feedback on every change, ensuring that the codebase remains clean, standards-compliant, and trustworthy over time. Well-designed CI pipelines act as living documentation of quality expectations and demonstrate a professional, disciplined approach to software development.
+
 
 
 # HTML Validation
@@ -194,7 +210,7 @@ Possible enhancements include:
 
 
 
-# CSS Stylelint
+# Stylelint
 
 The **CSS Stylelint** workflow automatically checks CSS files in the repository
 for stylistic consistency, common mistakes, and best-practice violations.
@@ -273,7 +289,7 @@ This workflow helps to:
 ## Scope
 
 * Lints all `.css` files in the repository
-* Uses the `stylelint-config-standard` ruleset
+* Requires a configuration file (`.stylelintrc.json`, currently implementing the `stylelint-config-standard` ruleset)
 
 
 ## Limitations
@@ -286,7 +302,7 @@ This workflow helps to:
 
 ## Possible Enhancements
 
-* Add a custom `.stylelintrc` configuration
+* Customize `.stylelintrc` 
 * Enable auto-fixing in local development
 * Restrict linting to specific directories
 * Integrate with Prettier (optional)
@@ -294,7 +310,7 @@ This workflow helps to:
 
 
 
-# Link Checker
+# Link Check
 
 The **Links** workflow automatically scans the repository for broken or unreachable links.
 When issues are found, it generates a report and opens a GitHub issue with the results, ensuring broken links are tracked and addressed.
