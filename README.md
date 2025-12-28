@@ -3,7 +3,7 @@
   <h1 align="center">Color Combinations</h1>
   <p align="center">
   <a href="https://groda.github.io/color-combinations/">
-    <img src="2020.106_web.jpg" width="600p" alt="Go to site">
+    <img src="website/assets/img/2020.106_web.jpg" width="600p" alt="Go to site">
   </a>
 </p>
 
