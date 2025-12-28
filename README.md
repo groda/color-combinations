@@ -24,6 +24,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/groda/color-combinations)](https://github.com/groda/color-combinations/commits/main)
 [![Top Language](https://img.shields.io/github/languages/top/groda/color-combinations)](https://github.com/groda/color-combinations)
 [![Contributors](https://img.shields.io/github/contributors/groda/color-combinations)](https://github.com/groda/color-combinations/graphs/contributors)
+[![Deploy Pages]((https://github.com/groda/color-combinations/actions/workflows/pages.yml/badge.svg))](https://github.com/groda/color-combinations/actions/workflows/pages.yml/badge.svg)
 
 ### 🌟 Social
 [![Stars](https://img.shields.io/github/stars/groda/color-combinations?style=social)](https://github.com/groda/color-combinations/stargazers)
