@@ -7,44 +7,4 @@ on:
 
 jobs:
   lighthouse:
-    runs-on: ubuntu-latest
-
-    steps:
-      # 1️⃣ Check out the repo
-      - uses: actions/checkout@v5
-
-      # 2️⃣ Set up Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      # 3️⃣ Install Lighthouse CLI
-      - name: Install Lighthouse
-        run: npm install -g lighthouse
-
-      # 4️⃣ Build GitHub Pages URL dynamically
-      - name: Set GitHub Pages URL
-        run: |
-          USER="${GITHUB_REPOSITORY%/*}"
-          REPO="${GITHUB_REPOSITORY#*/}"
-          echo "URL=https://$USER.github.io/$REPO/" >> $GITHUB_ENV
-
-      # 5️⃣ Run Lighthouse on the dynamic URL
-      - name: Run Lighthouse
-        run: | 
-          echo "Testing $URL"
-          lighthouse "$URL" \
-            --output=json \
-            --output=html \
-            --output-path=./lighthouse-report.html \
-            --chrome-flags="--headless"
-
-      # 6️⃣ Upload report as artifact
-      - name: Upload Lighthouse Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: lighthouse-reports
-          path: |
-            lighthouse-report.report.html
-            lighthouse-report.report.json
+    uses: groda/gha-workflows/.github/workflows/lighthouse.yml@main
