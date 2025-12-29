@@ -1,0 +1,16 @@
+name: JS/CSS Linting and HTML validate
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  eslint:
+    uses: groda/gha-workflows/.github/workflows/eslint.yml@main
+
+  stylelint:
+    uses: groda/gha-workflows/.github/workflows/stylelint.yml@main
+
+  html-validate:
+    uses: groda/gha-workflows/.github/workflows/html-validate.yml@main
