@@ -12,10 +12,8 @@
 <p></p>   
 
 ### ✅ CI & Quality Badges 
-![HTML Validation](https://github.com/groda/color-combinations/actions/workflows/html-validate.yml/badge.svg)
+![JS/CSS Lint and HTML validate](https://github.com/groda/color-combinations/actions/workflows/lint.yml/badge.svg)
 ![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
-![ESLint](https://github.com/groda/color-combinations/actions/workflows/eslint.yml/badge.svg)
-![CSS Stylelint](https://github.com/groda/color-combinations/actions/workflows/stylelint.yml/badge.svg)
 ![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)
 ![Gitleaks Secret Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)
 
