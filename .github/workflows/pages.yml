@@ -3,25 +3,8 @@ name: Deploy Pages
 on:
   workflow_dispatch:
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/configure-pages@v5
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: website
-
-      - uses: actions/deploy-pages@v4
+  pages:
+    uses: groda/gha-workflows/.github/workflows/pages.yml@main
+    with:
+      deploy-path: "website"
