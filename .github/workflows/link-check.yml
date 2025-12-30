@@ -6,6 +6,9 @@ on:
     - cron: "00 22 * * 1"
   workflow_dispatch:
 
+permissions:
+  issues: write
+  
 jobs:
   linkChecker:
     uses: groda/gha-workflows/.github/workflows/link-check.yml@main
