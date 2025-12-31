@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   metrics:
-    uses:groda/gha-workflows/.github/workflows/metrics.yml@main
+    uses: groda/gha-workflows/.github/workflows/metrics.yml@main
     with:
       metrics-repo: groda/observatory
     secrets:
