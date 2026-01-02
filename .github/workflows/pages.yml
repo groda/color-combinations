@@ -1,0 +1,15 @@
+name: Deploy Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  
+jobs:
+  pages:
+    uses: groda/gha-workflows/.github/workflows/pages.yml@main
+    with:
+      deploy-path: "website"
