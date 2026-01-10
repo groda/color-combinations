@@ -92,18 +92,19 @@ By wrapping common actions into our own reusable workflows, we achieve **governa
 > 
 > In this model, we trade the "myth" of absolute control for the reality of **centralized governance.**
 
-#### 2. Project-Specific Orchestration (`code-quality.yml`)
+#### 2. Local Workflow Implementation
 
-In the **color-combinations** repo, we use a single entry point—the `code-quality` workflow—to call only the modules required for our stack.
+In the **color-combinations** repo, we implement three distinct CI gates to handle quality, security, and performance. This separation allows for granular failure reporting and independent versioning of each check.
 
-| Module | Source | Role | Trigger |
-| --- | --- | --- | --- |
-| **Markup** | `html-validate` | Standardizes accessibility and semantic checks. | PR / Push |
-| **Logic** | `eslint` | Enforces JavaScript/TypeScript best practices. | PR / Push |
-| **Styles** | `stylelint` | Validates CSS/SCSS against design rules. | PR / Push |
-| **Security** | `gitleaks` | Prevents secrets/API keys from entering history. | PR / Push |
-| **Performance** | `lighthouse` | Audits Core Web Vitals and SEO metrics. | PR / Push |
-| **Links** | `link-checker` | Validates all outgoing and internal URLs. | Sunday Cron |
+| Entry Point (Local) | Module | Remote Source | Role | Trigger |
+| --- | --- | --- | --- | --- |
+| **`code-quality.yml`** | Markup | `html-validate` | Accessibility & semantic checks | **PR / Push** |
+| *(Orchestrator Suite)* | Logic | `eslint` | JS/TS best practices | **PR / Push** |
+|  | Styles | `stylelint` | CSS design system rules | **PR / Push** |
+| **`gitleaks.yml`** | Security | `gitleaks` | Secret & API key scanning | **PR / Push** |
+| **`lighthouse.yml`** | Performance | `lighthouse` | Core Web Vitals & SEO audits | **PR / Push** |
+| **`broken-links.yml`** | Links | `link-checker` | Outgoing URL validation | **Sunday Cron** |
+
 
 ### 🔒 Security & Performance as a Standard
 
