@@ -22,6 +22,7 @@ Traditional GitHub Actions setups often lead to "Workflow Drift," where CI scrip
 
 ### The Solution: The Orchestrator Pattern
 
+
 ```mermaid
 graph LR
     subgraph Central_Library [🌐 gha-workflows Repo]
@@ -38,22 +39,29 @@ graph LR
         direction TB
         O1{code-quality.yml <br/> Orchestrator}
         O2[broken-links.yml <br/> Link Checker]
+        O3[lighthouse.yml <br/> Web Audits]
+        O4[gitleaks.yml <br/> Prevent Secrets Leaks]
         O1 -->|uses| L1
         O1 -->|uses| L2
         O1 -->|uses| L3
-        O1 -->|uses| L5
-        O1 -->|uses| L6
         O2 -->|uses| L4
+        O3 -->|uses| L5
+        O4 -->|uses| L6
     end
 
     TriggerPR([Pull Request / Push]) --> O1
+    TriggerPR([Pull Request / Push]) --> O3
+    TriggerPR([Pull Request / Push]) --> O4
     TriggerCron([Sunday Cron]) --> O2
 
     style Central_Library fill:#f9f9f9,stroke:#333,stroke-dasharray: 5 5
     style Project_Repo fill:#e1f5fe,stroke:#01579b
     style O1 fill:#0288d1,color:#fff
     style O2 fill:#0288d1,color:#fff
+    style O3 fill:#0288d1,color:#fff
+    style O4 fill:#0288d1,color:#fff
 ```
+
 
 We implemented a hub-and-spoke model where the **logic** resides in a centralized library and the **orchestration** resides in the local project.
 
