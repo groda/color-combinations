@@ -27,3 +27,6 @@
 ### 🌟 Social
 [![Stars](https://img.shields.io/github/stars/groda/color-combinations?style=social)](https://github.com/groda/color-combinations/stargazers)
 [![Forks](https://img.shields.io/github/forks/groda/color-combinations?style=social)](https://github.com/groda/color-combinations/network/members)
+
+> 🛠 **Built with Best Practices:** Interested in how we handle automated quality? Check out our [Development & CI Guide](./DEVELOPMENT.md).
+
