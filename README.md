@@ -12,10 +12,10 @@
 <p></p>   
 
 ### ✅ CI & Quality Badges 
-![JS/CSS Lint and HTML validate](https://github.com/groda/color-combinations/actions/workflows/code-quality.yml/badge.svg)
-![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)
-![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)
-![Gitleaks Secret Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)
+[![JS/CSS Lint and HTML validate](https://github.com/groda/color-combinations/actions/workflows/code-quality.yml/badge.svg)](https://github.com/groda/color-combinations/actions/workflows/code-quality.yml)
+[![Link Check](https://github.com/groda/color-combinations/actions/workflows/link-check.yml/badge.svg)](https://github.com/groda/color-combinations/actions/workflows/link-check.yml)
+[![Lighthouse CI](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/groda/color-combinations/actions/workflows/lighthouse.yml)
+[![Gitleaks Secret Scan](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml/badge.svg)](https://github.com/groda/color-combinations/actions/workflows/gitleaks.yml)
 
 ### 📦 Repo Info
 [![License](https://img.shields.io/github/license/groda/color-combinations)](LICENSE)
