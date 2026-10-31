@@ -1,352 +1,415 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>ColorCombos</title>
-
-<!-- Using Font Awesome 6.6.0 from CDN with a local fallback.
-     Local copy is at css/fontawesome.min.css -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Color Combinations for Gray Days</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
       onerror="this.onerror=null;this.href='css/fontawesome.min.css';">
-      
 <link rel="stylesheet" href="assets/css/styles.css">
-
+<style>
+  /* Improved layout for images and overall page */
+  body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  h1, h2 {
+    margin-top: 2.5em;
+    margin-bottom: 0.5em;
+  }
+  h1 { font-size: 2.2rem; text-align: center; }
+  .section {
+    margin-bottom: 4em;
+  }
+  .colors {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 24px 0;
+  }
+  .swatch {
+    position: relative;
+    width: 140px;
+    height: 90px;
+    border-radius: 16px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    transition: transform 0.15s ease;
+  }
+  .swatch:hover {
+    transform: scale(1.04);
+  }
+  .swatch .info {
+    position: absolute;
+    bottom: 6px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.75rem;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    opacity: 0.85;
+  }
+  .painting-container {
+    text-align: center;
+    margin: 28px 0 40px;
+    padding: 12px;
+    background: #f8f8f8;
+    border-radius: 12px;
+  }
+  .painting {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .painting:hover {
+    transform: scale(1.015);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+  }
+  /* Lightbox improvements if needed */
+  .lightbox {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+  }
+  .lightbox-img {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+  }
+  p strong {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 0.4em;
+    color: #222;
+  }
+</style>
 </head>
-
 <body>
-
 <h1>Color Combinations for Gray Days</h1>
 
+<div class="section">
 <h2>Matisse – Harmony in Red (1908)</h2>
-
 <p><strong>Vivid Vermilion Red + Bright Turquoise</strong></p>
-
 <p>The famous red room with strong turquoise accents in the window view and table details. Extremely bold and happy.</p>
-<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:100px; background:#E32636; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
-  <div class="swatch" data-hex="#00A1B7" style="position:relative; width:180px; height:100px; background:#00A1B7; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
+<div class="colors">
+  <div class="swatch" data-hex="#E32636" style="background:#E32636;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#00A1B7" style="background:#00A1B7;"><div class="info">Click for hex</div></div>
 </div>
-
 <div class="painting-container">
   <img class="painting" 
        src="https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg"
-       width="372"
        alt="Painting: Matisse – Harmony in Red (1908)"
-       onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/the-dessert-harmony-in-red.jpg')">
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-
+<div class="section">
 <h2>Matisse – Luxe, Calme et Volupté (1904)</h2>
-
 <p><strong>Emerald Green + Hot Magenta Pink</strong></p>
 <p>Pointillist divisionism with intense green landscapes and magenta-pink flesh/nudes. Feels tropical and playful.</p>
-
-<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#00A86B" style="position:relative; width:180px; height:100px; background:#00A86B; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
-  <div class="swatch" data-hex="#FF1493" style="position:relative; width:180px; height:100px; background:#FF1493; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
-  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:100px; background:#E32636; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
-  <div class="swatch" data-hex="#00A1B7" style="position:relative; width:180px; height:100px; background:#00A1B7; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
+<div class="colors">
+  <div class="swatch" data-hex="#00A86B" style="background:#00A86B;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF1493" style="background:#FF1493;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#E32636" style="background:#E32636;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#00A1B7" style="background:#00A1B7;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg" 
+       alt="Painting: Matisse – Luxe, Calme et Volupté (1904)"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container">
-<img class="painting" src="https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg" 
-     width="372" 
-     alt="Painting: Matisse – Luxe, Calme et Volupté (1904)"
-     onclick="openLightbox('https://www.centrepompidou.fr/_elastic_filemount/media/picture/e9/77/e97761543b5e858ecaa1fcdfba5cced7/thumb_large.jpg')"></div>
-
-
+<div class="section">
 <h2>Van Gogh – Irises (Vase with Irises Against a Yellow Background), 1890</h2>  
-
-<p><strong>Vivid Cobalt Blue + Radiant Cadmium Yellow</strong>  </p>
-
+<p><strong>Vivid Cobalt Blue + Radiant Cadmium Yellow</strong></p>
 <p>One of the most joyful and intense still lifes Van Gogh painted during his year in Saint-Rémy. A simple earthenware vase bursts with electric cobalt-blue irises and emerald leaves against a glowing, almost fluorescent cadmium-yellow background. The complementary clash of blue and yellow creates pure visual fireworks—serene yet explosive, quiet yet screaming with life.</p>
-
-<div class="colors" style="display:flex; gap:16px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#0047AB" style="position:relative; width:180px; height:100px; background:#0047AB; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
-  <div class="swatch" data-hex="#FFD700" style="position:relative; width:180px; height:100px; background:#FFD700; border-radius:20px;">
-    <div class="info">Click for hex</div>
-  </div>
+<div class="colors">
+  <div class="swatch" data-hex="#0047AB" style="background:#0047AB;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFD700" style="background:#FFD700;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg" 
+       alt="Painting: Van Gogh – Irises (Vase with Irises Against a Yellow Background), 1890"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container">
-<img class="painting" src="https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg" 
-     width="372" 
-     alt="Painting: Van Gogh – Irises (Vase with Irises Against a Yellow Background), 1890"
-     onclick="openLightbox('https://iiif.micr.io/HVTVF/full/1280,/0/default.jpg')"></div>
-
-
+<div class="section">
 <h2>Mondrian – Composition 1930</h2>
-
 <p><strong>Cadmium Red + Cobalt Blue + Lemon Yellow</strong></p>
-
 <p>Primary colors at their most pure and punchy. Surprisingly cute because of the perfect balance.</p>
-
-<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#D40000" style="position:relative; width:120px; height:100px; background:#D40000; border-radius:20px;">
-<div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#0055FF" style="position:relative; width:120px; height:100px; background:#0055FF; border-radius:20px;">
-<div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FFEE00" style="position:relative; width:120px; height:100px; background:#FFEE00; border-radius:20px;">
-<div class="info">Click for hex</div></div>
+<div class="colors">
+  <div class="swatch" data-hex="#D40000" style="background:#D40000;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#0055FF" style="background:#0055FF;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFEE00" style="background:#FFEE00;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg" 
+       alt="Painting: Mondrian – Composition 1930"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container">
-<img class="painting" src="https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg" 
-     width="372" 
-     alt="Painting: Mondrian – Composition 1930"
-     onclick="openLightbox('https://smarthistory.org/wp-content/uploads/2022/01/1010px-Piet_Mondriaan_1930_-_Mondrian_Composition_II_in_Red_Blue_and_Yellow.jpeg')"></div>
-
-
+<div class="section">
 <h2>Van Gogh – Irises (1889)</h2> 
-
-<p><strong>Vivid Violet + Deep Indigo + Acid Lime Green</strong> </p>
-
+<p><strong>Vivid Violet + Deep Indigo + Acid Lime Green</strong></p>
 <p>(The true dominant trio from the 1889 version in the Van Gogh Museum)</p>
-
 <p>A hypnotic close-up of purple irises growing straight out of the garden soil. Van Gogh skips the vase entirely and paints the flowers against a raw patch of earth and sky. The petals are pure electric violet, the shadows plunge into almost black-indigo, and the leaves and stems flash with that unmistakable Van Gogh acid-lime green that makes the whole canvas vibrate like neon.</p>
-
-<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#8A2BE2" style="position:relative; width:120px; height:100px; background:#8A2BE2; border-radius:20px;">
-<div class="info">Click for hex</div></div>  <!-- vivid violet petals -->
-  <div class="swatch" data-hex="#4B0082" style="position:relative; width:120px; height:100px; background:#4B0082; border-radius:20px;">
-<div class="info">Click for hex</div></div>  <!-- deep indigo shadows & soil -->
-  <div class="swatch" data-hex="#00FF7F" style="position:relative; width:120px; height:100px; background:#00FF7F; border-radius:20px;">
-<div class="info">Click for hex</div></div>  <!-- acid spring-green leaves -->
+<div class="colors">
+  <div class="swatch" data-hex="#8A2BE2" style="background:#8A2BE2;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#4B0082" style="background:#4B0082;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#00FF7F" style="background:#00FF7F;"><div class="info">Click for hex</div></div>
 </div>
-
 <div class="painting-container">
-<img class="painting" src="https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg" 
-     width="372" 
-     alt="Painting: Van Gogh – Irises (1889)"
-     onclick="openLightbox('https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg')"></div>
+  <img class="painting" 
+       src="https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/ec/cc/eccc1e48-db9e-4159-87e0-4ac581ba4453/8c255d80-7382-46db-9fa8-892c0d37247e_9021.jpeg" 
+       alt="Painting: Van Gogh – Irises (1889)"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
+</div>
 
-
+<div class="section">
 <h2>Van Gogh – The Pink Peach Trees (“Souvenir de Mauve”), 1888</h2>
-
-<p><strong>Hot Pink + Deep Magenta + Minty Spring Green</strong> </p>
-
+<p><strong>Hot Pink + Deep Magenta + Minty Spring Green</strong></p>
 <p>Painted as a tender tribute to Anton Mauve after his death, this is Van Gogh at his most candy-sweet and joyful. Delicate peach trees explode into clouds of bubblegum-pink and hot-magenta blossoms against a fresh mint-green sky and field. It’s pure springtime euphoria—soft yet insanely vivid, like strawberry ice cream under a lime sky.</p>
-
-<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:120px; height:100px; background:#FF69B4; border-radius:20px;">
-<div class="info">Click for hex</div></div> <!-- hot pink blossoms -->
-  <div class="swatch" data-hex="#FF1493" style="position:relative; width:120px; height:100px; background:#FF1493; border-radius:20px;">
-<div class="info">Click for hex</div></div> <!-- deeper magenta pink -->
-  <div class="swatch" data-hex="#98FB98" style="position:relative; width:120px; height:100px; background:#98FB98; border-radius:20px;">
-<div class="info">Click for hex</div></div> <!-- minty spring green -->
+<div class="colors">
+  <div class="swatch" data-hex="#FF69B4" style="background:#FF69B4;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF1493" style="background:#FF1493;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#98FB98" style="background:#98FB98;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://krollermuller.nl/media/cache/collection_item_detail_small/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg" 
+       alt="Painting: Van Gogh – The Pink Peach Trees (“Souvenir de Mauve”), 1888"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://krollermuller.nl/media/cache/collection_item_detail_small/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg" 
-     width="372" 
-     alt="Painting: Van Gogh – The Pink Peach Trees (“Souvenir de Mauve”), 1888"
-     onclick="openLightbox('https://krollermuller.nl/media/cache/collection_item_detail_small/media/collectionitempage/tmsImage/roze-perzikbomen-souvenir-de-mauve-vincent-van-gogh-44542-copyright-kroller-muller-museum.jpg')"></div>
-
-
+<div class="section">
 <h2>Matisse – Woman with a Hat (Madame Matisse), 1905</h2> 
-
-<p><strong>Turquoise + Fuchsia + Lemon Yellow + Emerald Green</strong>  </p>
-
+<p><strong>Turquoise + Fuchsia + Lemon Yellow + Emerald Green</strong></p>
 <p>The painting that scandalized Paris and launched Fauvism. Matisse’s wife Amélie sits in an ordinary chair wearing an elaborate hat, but everything is transformed into pure, explosive color: her face is painted with turquoise shadows and fuchsia highlights, the hat is a riot of hot pink and emerald, and wild strokes of lemon yellow streak across the background. It’s bold, fearless, and strangely joyful—like a tropical bird exploded in the middle of a Parisian salon.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;">
-    <div class="info">Click for hex</div></div>  <!-- turquoise -->
-  <div class="swatch" data-hex="#FF0090" style="position:relative; width:180px; height:90px; background:#FF0090; border-radius:20px;">
-    <div class="info">Click for hex</div></div>  <!-- fuchsia / hot magenta -->
-  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;">
-    <div class="info">Click for hex</div></div>  <!-- lemon yellow -->
-  <div class="swatch" data-hex="#008040" style="position:relative; width:180px; height:90px; background:#008040; border-radius:20px;">
-    <div class="info">Click for hex</div></div>  <!-- emerald green -->
+<div class="colors">
+  <div class="swatch" data-hex="#40E0D0" style="background:#40E0D0;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF0090" style="background:#FF0090;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF66" style="background:#FFFF66;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#008040" style="background:#008040;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg" 
+       alt="Painting: Matisse – Woman with a Hat (Madame Matisse), 1905"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg" 
-     width="372" 
-     alt="Painting: Matisse – Woman with a Hat (Madame Matisse), 1905"
-     onclick="openLightbox('https://www.henrimatisse.org/assets/img/paintings/woman-with-a-hat.jpg')"></div>
-
-
+<div class="section">
 <h2>Franz Marc – Blue Horses, 1911</h2>  
-
-<p><strong>Royal Blue + Scarlet Red + Hot Pink + Lemon Yellow</strong>  </p>
-
+<p><strong>Royal Blue + Scarlet Red + Hot Pink + Lemon Yellow</strong></p>
 <p>Horses made of pure electric color—somehow both wild and adorable.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#0000FF" style="position:relative; width:180px; height:90px; background:#0000FF; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FF0000" style="position:relative; width:180px; height:90px; background:#FF0000; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:180px; height:90px; background:#FF69B4; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FFFF00" style="position:relative; width:180px; height:90px; background:#FFFF00; border-radius:20px;"><div class="info">Click for hex</div></div>
+<div class="colors">
+  <div class="swatch" data-hex="#0000FF" style="background:#0000FF;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF0000" style="background:#FF0000;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF69B4" style="background:#FF69B4;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF00" style="background:#FFFF00;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5" 
+       alt="Painting: Franz Marc – Blue Horses, 1911"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5" 
-     width="372" 
-     alt="Painting: Franz Marc – Blue Horses, 1911"
-     onclick="openLightbox('https://walker-col.imgix.net/wac_129.tif?fm=jpg&w=1440&h=1050&fit=max&dpr=1.5')"></div>
-
-
+<div class="section">
 <h2>Van Gogh – Wheatfield with Crows, 1890</h2>
-
-<p><strong>Fluorescent Ultramarine + Golden Wheat + Black Crows</strong>  </p>
-
+<p><strong>Fluorescent Ultramarine + Golden Wheat + Black Crows</strong></p>
 <p>One of Van Gogh’s final and most dramatic paintings, painted in Auvers-sur-Oise just weeks before his death. A stormy, almost electric ultramarine sky churns with thick, violent brushstrokes, pressing down on a turbulent sea of golden-yellow wheat. Three dark paths cut through the field like lost roads, and a flock of black crows rises ominously—yet the colors remain unbelievably vivid and alive, like a scream in neon. It’s apocalyptic, intense, and strangely beautiful—like the end of the world painted in candy that’s gone slightly toxic.</p>
-
-<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#002FA7" style="position:relative; width:120px; height:110px; background:#002FA7; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- that famous radioactive ultramarine -->
-  <div class="swatch" data-hex="#FFD700" style="position:relative; width:120px; height:110px; background:#FFD700; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- molten gold wheat -->
-  <div class="swatch" data-hex="#000000" style="position:relative; width:120px; height:110px; background:#000000; border-radius:24px;"><div class="info">Click for hex</div></div> <!-- the ominous black crows -->
+<div class="colors">
+  <div class="swatch" data-hex="#002FA7" style="background:#002FA7;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFD700" style="background:#FFD700;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#000000" style="background:#000000;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg" 
+       alt="Painting: Van Gogh – Wheatfield with Crows, 1890"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg" 
-     width="372" 
-     alt="Painting: Van Gogh – Wheatfield with Crows, 1890"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg/2560px-Korenveld_met_kraaien_-_s0149V1962_-_Van_Gogh_Museum.jpg')"></div>
-
-
-<h2>Picasso – Jacqueline with Flowers, 1954 (late period love explosion)</h2>
-
-<p><strong>Hot Coral + Acid Lime + Turquoise + Magenta</strong>  </p>
-
+<div class="section">
+<h2>Picasso – Jacqueline with Flowers, 1954</h2>
+<p><strong>Hot Coral + Acid Lime + Turquoise + Magenta</strong></p>
 <p>Picasso painting his wife Jacqueline as a walking tropical punch bowl – pure 1950s Riviera joy.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#FF4040" style="position:relative; width:180px; height:90px; background:#FF4040; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#BFFF00" style="position:relative; width:180px; height:90px; background:#BFFF00; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FF1493" style="position:relative; width:180px; height:90px; background:#FF1493; border-radius:20px;"><div class="info">Click for hex</div></div>
+<div class="colors">
+  <div class="swatch" data-hex="#FF4040" style="background:#FF4040;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#BFFF00" style="background:#BFFF00;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#40E0D0" style="background:#40E0D0;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF1493" style="background:#FF1493;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg" 
+       alt="Painting: Picasso – Jacqueline with Flowers, 1954"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg" 
-     width="372" 
-     alt="Painting: Picasso – Jacqueline with Flowers, 1954 (late period love explosion)"
-     onclick="openLightbox('https://www.pablopicasso.org/assets/img/paintings/jacqueline-with-flowers.jpg')"></div>
-
-
+<div class="section">
 <h2>Gauguin – Arearea (Joyousness), 1892</h2>
-
-<p><strong>Coral Red + Turquoise + Mango Orange + Acid Lime Green</strong> </p>
-
+<p><strong>Coral Red + Turquoise + Mango Orange + Acid Lime Green</strong></p>
 <p>Pure Tahitian happiness distilled into four screaming colors. Two women lounge with a playful red dog on a coral-red beach under a turquoise sky, while mango-orange figures dance in the background and acid-lime trees glow like neon. The entire canvas feels like it’s humming with heat, music, and fruit-punch sweetness—this is Gauguin at his most joyful, sensual, and color-drunk.</p>
-
 <p>This painting is literally titled “Joyousness” — and the colors this saturated and happy feel like they were invented for that exact emotion.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#E74C3C" style="position:relative; width:180px; height:90px; background:#E74C3C; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- coral red ground & dog -->
-  <div class="swatch" data-hex="#00C4B4" style="position:relative; width:180px; height:90px; background:#00C4B4; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- turquoise sky & water -->
-  <div class="swatch" data-hex="#FF8C42" style="position:relative; width:180px; height:90px; background:#FF8C42; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- mango orange figures -->
-  <div class="swatch" data-hex="#A0FF00" style="position:relative; width:180px; height:90px; background:#A0FF00; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- acid lime trees -->
+<div class="colors">
+  <div class="swatch" data-hex="#E74C3C" style="background:#E74C3C;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#00C4B4" style="background:#00C4B4;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF8C42" style="background:#FF8C42;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#A0FF00" style="background:#A0FF00;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg" 
+       alt="Painting: Gauguin – Arearea (Joyousness), 1892"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg" 
-     width="372" 
-     alt="Painting: Gauguin – Arearea (Joyousness), 1892"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/d/dc/Arearea%2C_by_Paul_Gauguin.jpg')"></div>
-
-
+<div class="section">
 <h2>Henri-Edmond Cross – The Pink Cloud (Antibes), 1906–1908</h2>  
-
-<p><strong>Hot Pink Cloud + Turquoise Sea + Lemon Yellow Beach + Lime Trees</strong>  </p>
-
+<p><strong>Hot Pink Cloud + Turquoise Sea + Lemon Yellow Beach + Lime Trees</strong></p>
 <p>A sunset that looks like cotton candy exploded over the French Riviera.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#FF69B4" style="position:relative; width:180px; height:90px; background:#FF69B4; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#40E0D0" style="position:relative; width:180px; height:90px; background:#40E0D0; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;"><div class="info">Click for hex</div></div>
-  <div class="swatch" data-hex="#32CD32" style="position:relative; width:180px; height:90px; background:#32CD32; border-radius:20px;"><div class="info">Click for hex</div></div>
+<div class="colors">
+  <div class="swatch" data-hex="#FF69B4" style="background:#FF69B4;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#40E0D0" style="background:#40E0D0;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF66" style="background:#FFFF66;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#32CD32" style="background:#32CD32;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="assets/img/2020.106_web.jpg" 
+       alt="Painting: Henri-Edmond Cross – The Pink Cloud (Antibes), 1906–1908"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="assets/img/2020.106_web.jpg" 
-     width="372" 
-     alt="Painting: Henri-Edmond Cross – The Pink Cloud (Antibes), 1906–1908"
-     onclick="openLightbox('assets/img/2020.106_web.jpg')"></div>
-
-
-<h1>Claude Monet – Poppy Field near Argenteuil (Champ de coquelicots, environs d’Argenteuil), 1873</h1>
-
-<p><b>Vivid Scarlet Poppies + Ultramarine Sky + Emerald Green Grass + Lemon Yellow Highlights</b> </p>
-
+<div class="section">
+<h1>Claude Monet – Poppy Field near Argenteuil, 1873</h1>
+<p><strong>Vivid Scarlet Poppies + Ultramarine Sky + Emerald Green Grass + Lemon Yellow Highlights</strong></p>
 <p>The ultimate Monet color bomb: an endless sea of electric-red poppies explodes across the canvas, set against a perfect cobalt-and-ultramarine sky. The grass is pure saturated emerald, and tiny lemon-yellow wildflowers and Camille’s parasol pop like candy sprinkles. Painted en plein air on a perfect summer day, it’s so bright and joyful it feels like the sun itself is screaming in happiness.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#E32636" style="position:relative; width:180px; height:90px; background:#E32636; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- screaming scarlet poppies -->
-  <div class="swatch" data-hex="#002FA7" style="position:relative; width:180px; height:90px; background:#002FA7; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- ultramarine sky -->
-  <div class="swatch" data-hex="#008040" style="position:relative; width:180px; height:90px; background:#008040; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- emerald grass -->
-  <div class="swatch" data-hex="#FFFF66" style="position:relative; width:180px; height:90px; background:#FFFF66; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- lemon parasol & highlights -->
+<div class="colors">
+  <div class="swatch" data-hex="#E32636" style="background:#E32636;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#002FA7" style="background:#002FA7;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#008040" style="background:#008040;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFFF66" style="background:#FFFF66;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg" 
+       alt="Painting: Claude Monet – Poppy Field near Argenteuil, 1873"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg" 
-     width="372" 
-     alt="Painting: Claude Monet – Poppy Field near Argenteuil (Champ de coquelicots, environs d’Argenteuil), 1873"
-     onclick="openLightbox('https://cdn.mediatheque.epmoo.fr/link/3c9igq/bkp1butlxy7va68.jpg')"></div>
-
-
+<div class="section">
 <h2>Gustav Klimt – Flower Garden (Bauerngarten), 1907</h2>
-
-<p><strong>Emerald Green + Hot Magenta + Scarlet Red + Bright Orange + Lemon Yellow + Cobalt Blue</strong>  </p>
-
+<p><strong>Emerald Green + Hot Magenta + Scarlet Red + Bright Orange + Lemon Yellow + Cobalt Blue</strong></p>
 <p>Klimt sprinkles vivid orange marigolds, nasturtiums, and tiger-lily flashes throughout the canvas. They act like little firecrackers among the cooler flowers and make the whole painting absolutely sing.</p>
-
-<div class="colors" style="display:flex; gap:6px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#006400" style="position:relative; width:120px; height:90px; background:#006400; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- emerald grass -->
-  <div class="swatch" data-hex="#FF1493" style="position:relative; width:120px; height:90px; background:#FF1493; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- hot magenta cosmos -->
-  <div class="swatch" data-hex="#DC143C" style="position:relative; width:120px; height:90px; background:#DC143C; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- scarlet poppies -->
-  <div class="swatch" data-hex="#FF4500" style="position:relative; width:120px; height:90px; background:#FF4500; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- bright orange marigolds & nasturtiums ← the missing star! -->
-  <div class="swatch" data-hex="#FFD700" style="position:relative; width:120px; height:90px; background:#FFD700; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- lemon yellow daisies -->
-  <div class="swatch" data-hex="#0047AB" style="position:relative; width:120px; height:90px; background:#0047AB; border-radius:20px;"><div class="info">Click for hex</div></div> <!-- cobalt blue accents -->
+<div class="colors">
+  <div class="swatch" data-hex="#006400" style="background:#006400;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF1493" style="background:#FF1493;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#DC143C" style="background:#DC143C;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FF4500" style="background:#FF4500;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#FFD700" style="background:#FFD700;"><div class="info">Click for hex</div></div>
+  <div class="swatch" data-hex="#0047AB" style="background:#0047AB;"><div class="info">Click for hex</div></div>
+</div>
+<div class="painting-container">
+  <img class="painting" 
+       src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg" 
+       alt="Painting: Gustav Klimt – Flower Garden (Bauerngarten), 1907"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 </div>
 
-<div class="painting-container"><img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg" 
-     width="372" 
-     alt="Painting: Gustav Klimt – Flower Garden (Bauerngarten), 1907"
-     onclick="openLightbox('https://upload.wikimedia.org/wikipedia/commons/e/ed/Klimt_bauerngarten.jpg')"></div>
-
-
-<h2> Yves Klein – Monochrome IKB (International Klein Blue), 1950s–1962</h2>
-
-<p><strong>Pure Ultramarine “IKB” (International Klein Blue)</strong>  </p>
-
-<p>It isn’t “just blue.”
-Yves Klein spent years searching for a blue that could carry pure spirit, a color so saturated and luminous that it feels weightless, infinite, and almost immaterial—like staring straight into the void of the sky at noon, or into the heart of a flame that forgot to burn.</p>
-
+<div class="section">
+<h2>Yves Klein – Monochrome IKB (International Klein Blue), 1950s–1962</h2>
+<p><strong>Pure Ultramarine “IKB” (International Klein Blue)</strong></p>
+<p>It isn’t “just blue.” Yves Klein spent years searching for a blue that could carry pure spirit, a color so saturated and luminous that it feels weightless, infinite, and almost immaterial—like staring straight into the void of the sky at noon, or into the heart of a flame that forgot to burn.</p>
 <p>He finally created IKB 191 (the exact registered pigment): an ultramarine suspended in a revolutionary synthetic resin that keeps the matte velvet texture while making the color appear to float in front of the canvas. When you stand in front of a real Klein monochrome, the surface seems to dematerialize; there’s no brushstroke, no edge, no depth cue—only pure, vibrating blue that swallows space and time. People have cried in front of them. Others say it feels like flying.</p>
-
 <p>Klein called it “the most perfect expression of blue” and used it to paint pure sensation: no figures, no stories, no composition—just the color itself as the entire subject. To him, blue was freedom, infinity, the immaterial, the divine.</p>
-
-<div class="colors" style="display:flex; gap:12px; flex-wrap:wrap; margin:20px 0; max-width:380px;">
-  <div class="swatch" data-hex="#002FA7" style="position:relative; width:180px; height:90px; background:#002FA7; border-radius:20px;"><div class="info">Click for hex</div></div>
+<div class="colors">
+  <div class="swatch" data-hex="#002FA7" style="background:#002FA7;"><div class="info">Click for hex</div></div>
 </div>
-
-<div class="painting-container"><img class="painting" src="https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg" 
-     width="372" 
-     alt="Painting: Yves Klein – Monochrome IKB (International Klein Blue), 1950s–1962"
-     onclick="openLightbox('https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg')"></div>
-
+<div class="painting-container">
+  <img class="painting" 
+       src="https://www.moma.org/media/W1siZiIsIjUxOTc3MyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg" 
+       alt="Painting: Yves Klein – Monochrome IKB (International Klein Blue), 1950s–1962"
+       loading="lazy"
+       onclick="openLightbox(this.src)">
+</div>
 <p>(That exact shade #002FA7 is International Klein Blue—he owned the formula.)</p>
+</div>
 
 <div class="lightbox" onclick="this.style.display='none'">
   <span class="close" onclick="document.querySelector('.lightbox').style.display='none'">×</span>
-  <img alt="Full-size painting" class="lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  <img alt="Full-size painting" class="lightbox-img" src="">
 </div>
 
+<script>
+function openLightbox(src) {
+  const lb = document.querySelector('.lightbox');
+  const img = lb.querySelector('.lightbox-img');
+  img.src = src;
+  lb.style.display = 'flex';
+}
+// Existing script.js can still handle swatch clicks if present
+</script>
 <script src="assets/js/script.js"></script>
-
 </body>
-
 </html>
